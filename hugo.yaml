@@ -1,0 +1,10 @@
+baseURL: /
+languageCode: en-us
+title: ceroute.com
+theme: terminal
+
+params:
+  themeColor: green
+  fullWidthTheme: true
+  centerTheme: true
+  autoCover: true

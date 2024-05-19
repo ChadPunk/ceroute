@@ -8,3 +8,12 @@ params:
   fullWidthTheme: true
   centerTheme: true
   autoCover: true
+  logo:
+    logoText: "ceroute.com"
+    logoHomeLink: "/"
+menu:
+  main:
+    - identifier: "about"
+      name: "About"
+      url: "/about"
+

@@ -1507,72 +1507,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 
 
-.youtube-native-wrap {
-  margin-top: 54px;
-  display: grid;
-  grid-template-columns: 1.45fr .55fr;
-  gap: 18px;
-  align-items: stretch;
-}
 
-.youtube-player-shell,
-.youtube-native-copy {
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
-}
 
-.youtube-player-shell {
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  min-height: 320px;
-}
 
-.youtube-player-shell iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
 
-.youtube-native-copy {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-.youtube-native-copy h3 {
-  margin: 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  letter-spacing: -.04em;
-  line-height: 1.05;
-}
 
-.youtube-native-copy > p:not(.card-kicker) {
-  color: #a9b5c6;
-  line-height: 1.7;
-  margin: 16px 0 26px;
-}
 
-.youtube-native-copy .btn {
-  align-self: flex-start;
-}
 
 
 
 @media (max-width: 900px) {
-  .youtube-native-wrap {
-    grid-template-columns: 1fr;
-  }
-
-  .youtube-native-copy .btn {
-    align-self: stretch;
-  }
-
+  
+  
   .site-nav .nav-main {
     justify-content: flex-start;
   }
@@ -1584,58 +1531,390 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 
-.youtube-preview-safe {
+
+
+
+
+
+
+
+
+
+.youtube-feed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 54px;
+}
+
+.youtube-feed-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.youtube-feed-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(70,132,255,.42);
+  box-shadow: 0 22px 50px rgba(0,0,0,.18);
+}
+
+.youtube-feed-thumb {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #061427;
+}
+
+.youtube-feed-thumb img {
   width: 100%;
   height: 100%;
-  min-height: 320px;
-  display: grid;
-  place-items: center;
-  padding: 34px;
-  background:
-    radial-gradient(circle at 70% 20%, rgba(37,99,235,.18), transparent 19rem),
-    linear-gradient(145deg, #07172c, #04101f);
+  object-fit: cover;
+  transition: transform .35s ease;
 }
 
-.youtube-preview-inner {
-  max-width: 520px;
-  text-align: center;
+.youtube-feed-card:hover .youtube-feed-thumb img {
+  transform: scale(1.025);
 }
 
-.youtube-preview-mark {
-  width: 72px;
-  height: 52px;
-  margin: 0 auto 22px;
-  border-radius: 15px;
-  display: grid;
-  place-items: center;
-  background: #ff0033;
-  box-shadow: 0 16px 40px rgba(255,0,51,.18);
+.youtube-feed-watch {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #fff;
+  background: rgba(4,13,26,.88);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(10px);
+  font-size: .7rem;
+  font-weight: 800;
 }
 
-.youtube-preview-mark::after {
+.youtube-feed-watch::before {
   content: "";
   width: 0;
   height: 0;
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-  border-left: 15px solid white;
-  margin-left: 4px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #fff;
 }
 
-.youtube-preview-inner .card-kicker {
-  margin-bottom: 10px;
+.youtube-feed-copy {
+  padding: 20px 20px 22px;
 }
 
-.youtube-preview-inner h3 {
+.youtube-feed-copy h3 {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  letter-spacing: -.04em;
+  font-size: 1.08rem;
+  line-height: 1.38;
+  letter-spacing: -.025em;
 }
 
-.youtube-preview-inner p {
-  color: #9eabbc;
-  line-height: 1.65;
-  margin: 14px auto 24px;
+.youtube-feed-copy h3 a:hover {
+  color: var(--blue-soft);
 }
 
+.youtube-feed-loading,
+.youtube-feed-error {
+  grid-column: 1 / -1;
+  min-height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+  color: #93a1b4;
+  background: rgba(255,255,255,.018);
+}
+
+.feed-loader {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.12);
+  border-top-color: var(--blue-bright);
+  animation: feed-spin .8s linear infinite;
+}
+
+@keyframes feed-spin {
+  to { transform: rotate(360deg); }
+}
+
+.youtube-feed-footer {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255,255,255,.018);
+}
+
+.youtube-feed-footer p {
+  margin: 0;
+  color: #8f9caf;
+  line-height: 1.6;
+  font-size: .88rem;
+  max-width: 720px;
+}
+
+@media (max-width: 900px) {
+  .youtube-feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .youtube-feed-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+
+
+/* ---------- Mobile polish v10 ---------- */
+
+@media (max-width: 600px) {
+  /* Keep sections breathing without making the page feel endless. */
+  .work-with-me,
+  .connect {
+    padding-top: 78px !important;
+  }
+
+  /* Work With Me heading and intro */
+  .work-with-me .section-heading h2 {
+    font-size: clamp(2.45rem, 11.5vw, 3.35rem);
+    line-height: .98;
+  }
+
+  .work-intro {
+    margin-top: 24px;
+  }
+
+  .work-intro p {
+    font-size: .97rem;
+    line-height: 1.65;
+  }
+
+  /* Turn the desktop cards into tighter mobile cards. */
+  .work-grid {
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .work-card {
+    min-height: 0;
+    padding: 20px 19px 21px;
+    border-radius: 17px;
+  }
+
+  .work-card:hover {
+    transform: none;
+  }
+
+  .work-number {
+    margin-bottom: 22px;
+    font-size: .69rem;
+  }
+
+  .work-card h3 {
+    font-size: 1.38rem;
+  }
+
+  .work-card p:not(.card-kicker) {
+    margin-top: 9px;
+    font-size: .89rem;
+    line-height: 1.55;
+  }
+
+  .work-card .card-kicker {
+    margin-bottom: 6px;
+  }
+
+  /* Compact "Tell me what you're working on" CTA */
+  .work-cta {
+    margin-top: 10px;
+    padding: 22px 19px;
+    gap: 20px;
+    border-radius: 17px;
+  }
+
+  .work-cta h3 {
+    font-size: 1.55rem;
+    line-height: 1.08;
+  }
+
+  .work-cta p:not(.card-kicker) {
+    margin-top: 10px;
+    font-size: .9rem;
+    line-height: 1.58;
+  }
+
+  .work-cta .contact-email {
+    min-height: 48px;
+    border-radius: 11px;
+  }
+
+  /* Connect/Get in touch: make it a compact mobile panel. */
+  .connect {
+    padding-bottom: 74px;
+  }
+
+  .connect-card {
+    padding: 24px 18px 18px !important;
+    gap: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .connect .eyebrow {
+    font-size: .68rem;
+  }
+
+  .connect h2 {
+    margin-top: 12px;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .connect-card > div:first-child > p {
+    margin: 15px 0 0;
+    font-size: .92rem;
+    line-height: 1.58;
+  }
+
+  .connect-actions.social-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+
+  .connect-actions .social-btn {
+    width: 100%;
+    min-height: 64px;
+    padding: 8px 5px;
+    border-radius: 13px;
+    flex-direction: column;
+    gap: 5px;
+    font-size: .72rem;
+    line-height: 1;
+  }
+
+  .connect-actions .social-btn .social-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .connect-actions .social-btn .arrow {
+    display: none;
+  }
+
+  .connect-actions .connect-work-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 1px;
+    border-radius: 12px;
+    font-size: .84rem;
+  }
+
+  .connect-card .setup-note {
+    margin: -4px 0 0 !important;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: .7rem;
+    line-height: 1.5;
+  }
+
+  /* Footer becomes a deliberate compact mobile footer. */
+  .site-footer {
+    width: calc(100% - 26px);
+    min-height: 0;
+    padding: 28px 0 34px !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px !important;
+    text-align: center;
+  }
+
+  .footer-brand {
+    justify-content: center;
+    gap: 10px;
+    font-size: .95rem;
+  }
+
+  .footer-brand img {
+    width: 48px;
+    height: 30px;
+  }
+
+  .footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    flex-wrap: nowrap;
+  }
+
+  .footer-socials a {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: rgba(255,255,255,.025);
+    color: #aeb9c9;
+  }
+
+  .footer-socials a span {
+    display: none;
+  }
+
+  .footer-socials a .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer-copyright {
+    margin: 0;
+    color: #657389;
+    font-size: .7rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .connect-actions.social-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-actions .social-btn {
+    min-height: 48px;
+    flex-direction: row;
+    justify-content: center;
+    font-size: .8rem;
+  }
+
+  .connect-actions .connect-work-btn {
+    grid-column: auto;
+  }
+}

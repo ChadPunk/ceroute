@@ -235,36 +235,26 @@
           <h2>What I’ve actually <span>published.</span></h2>
         </div>
 
-        <a class="text-link videos-channel-link" href="https://youtube.com/chademery" target="_blank" rel="noopener noreferrer">
+        <a class="text-link videos-channel-link" href="https://www.youtube.com/c/ChadEmery/videos" target="_blank" rel="noopener noreferrer">
           View channel <span>↗</span>
         </a>
       </div>
 
-      <div class="youtube-native-wrap reveal">
-        <div class="youtube-player-shell">
-          <iframe
-            src="https://www.youtube.com/embed?listType=user_uploads&list=chademery&rel=0"
-            title="Latest videos from Chad Emery on YouTube"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+      <div id="youtube-feed" class="youtube-feed-grid reveal" aria-live="polite">
+        <div class="youtube-feed-loading">
+          <span class="feed-loader" aria-hidden="true"></span>
+          <p>Loading latest uploads…</p>
         </div>
+      </div>
 
-        <div class="youtube-native-copy">
-          <p class="card-kicker">On the channel</p>
-          <h3>See what I’m building and learning.</h3>
-          <p>
-            Browse the latest uploads right here, or jump over to YouTube for the full channel.
-            Expect practical tech, experiments, explainers, and the occasional deep dive into
-            whatever I’m curious about next.
-          </p>
-
-          <a class="btn btn-primary" href="https://youtube.com/chademery" target="_blank" rel="noopener noreferrer">
-            Open YouTube ↗
-          </a>
-        </div>
+      <div class="youtube-feed-footer reveal">
+        <p>
+          Videos are pulled from my actual YouTube channel during the site deployment,
+          so this section stays lightweight and does not rely on an embedded player.
+        </p>
+        <a class="btn btn-secondary" href="https://www.youtube.com/c/ChadEmery/videos" target="_blank" rel="noopener noreferrer">
+          See all videos ↗
+        </a>
       </div>
     </section>
 
@@ -386,7 +376,7 @@
   <circle cx="5.8" cy="5.7" r="1.8" class="icon-fill"></circle>
   <path d="M10 9h3v1.5c.8-1.1 2-1.9 3.8-1.9 3.2 0 4.2 2 4.2 5.2v5.4h-3.2V14c0-1.6-.5-2.7-2-2.7-1.6 0-2.6 1.1-2.6 3v4.9H10Z" class="icon-fill"></path>
 </svg><span>LinkedIn</span><span class="arrow">↗</span></a>
-          <a class="btn btn-secondary" href="#work-with-me">Work with me</a>
+          <a class="btn btn-secondary connect-work-btn" href="#work-with-me">Work with me</a>
         </div>
 
         <p class="setup-note">
@@ -419,7 +409,7 @@
 </svg><span>LinkedIn</span></a>
     </div>
 
-    <p>© <span id="year"></span> Chad Emery</p>
+    <p class="footer-copyright">© <span id="year"></span> Chad Emery</p>
   </footer>
 
   <script src="script.js"></script>

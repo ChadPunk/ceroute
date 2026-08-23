@@ -1,53 +1,31 @@
-# ceroute.com static site
+# ceroute.com static GitHub Pages site
 
-This repo is now a plain static GitHub Pages site. Hugo is no longer required.
+This version does not embed YouTube's player.
 
-## Site files
-- `index.html`
-- `styles.css`
-- `script.js`
-- `assets/`
+## YouTube feed
+The GitHub Actions workflow uses `yt-dlp` during deployment to retrieve the
+latest three public uploads from:
+
+https://www.youtube.com/c/ChadEmery/videos
+
+It then generates `youtube-feed.json`. The page renders local video cards and
+links directly to YouTube.
+
+The workflow also runs once per day so the video cards can refresh without a
+manual site edit.
+
+If YouTube blocks a refresh on a particular run, the workflow keeps the
+repository's existing fallback `youtube-feed.json` rather than breaking the site.
 
 ## GitHub Pages
-Deployment is handled by `.github/workflows/deploy.yml`.
+Set:
 
-In GitHub:
-1. Open **Settings → Pages**
-2. Under **Build and deployment → Source**, select **GitHub Actions**
-3. Push to `main`
-4. Wait for the `Deploy static site to Pages` workflow to finish
+Settings → Pages → Build and deployment → Source → GitHub Actions
 
-## Custom domain
-`CNAME` contains:
-
-`ceroute.com`
-
-Keep the existing DNS records for the GitHub Pages custom domain unless you are intentionally changing providers.
+## Domain
+`CNAME` is set to `ceroute.com`.
 
 ## Cloudflare verification
-The repo contains:
+`.well-known/cf-2fa-verify.txt` contains:
 
-`.well-known/cf-2fa-verify.txt`
-
-with:
-
-`44ea7708d6cfca2`
-
-The deployed URL should be:
-
-`https://ceroute.com/.well-known/cf-2fa-verify.txt`
-
-## Replacing the old Hugo site
-Remove the old Hugo-specific files and folders from the repository, including:
-- `archetypes/`
-- `content/`
-- `public/`
-- `resources/`
-- `static/`
-- `themes/`
-- `.gitmodules`
-- `.hugo_build.lock`
-- `hugo.yaml`
-- the old Hugo workflow
-
-Then copy the contents of this package into the repository root and push to `main`.
+44ea7708d6cfca2

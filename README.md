@@ -29,3 +29,8 @@ Settings → Pages → Build and deployment → Source → GitHub Actions
 `.well-known/cf-2fa-verify.txt` contains:
 
 44ea7708d6cfca2
+
+## Mobile overflow fix (v11)
+The site now clips horizontal overflow at the `html`, `body`, and `main` levels,
+clips the decorative hero visual on mobile, and sets `min-width: 0` on grid/flex
+children to prevent content from widening the viewport.

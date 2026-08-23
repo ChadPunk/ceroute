@@ -1918,3 +1918,127 @@ button, a { -webkit-tap-highlight-color: transparent; }
     grid-column: auto;
   }
 }
+
+
+/* ---------- Horizontal overflow hardening v11 ---------- */
+
+/*
+  Mobile Safari/Chrome can still expose horizontal overscroll when an
+  absolutely positioned decorative element extends outside the body.
+  Clip at the document level as well as the specific visual regions.
+*/
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.section,
+.site-header,
+.site-footer,
+.hero,
+.hero-visual,
+.logo-stage,
+.about-grid,
+.content-grid,
+.youtube-feed-grid,
+.work-grid,
+.work-cta,
+.connect-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero > *,
+.about-grid > *,
+.content-grid > *,
+.youtube-feed-grid > *,
+.work-grid > *,
+.work-cta > *,
+.connect-card > * {
+  min-width: 0;
+}
+
+.ticker {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .hero-visual {
+    width: 100%;
+    max-width: 100%;
+    overflow: clip;
+  }
+
+  /* Keep decorative hero blobs inside the visual box on phones/tablets. */
+  .orb-one {
+    right: -28px;
+  }
+
+  .orb-two {
+    left: -22px;
+  }
+}
+
+@media (max-width: 600px) {
+  /*
+    Use calc() explicitly for widest browser compatibility.
+    This also ensures the content container can never exceed the viewport.
+  */
+  .section,
+  .site-header,
+  .site-footer {
+    width: calc(100% - 26px);
+    max-width: calc(100% - 26px);
+  }
+
+  .logo-stage {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-visual {
+    padding-inline: 0;
+  }
+
+  .orb {
+    pointer-events: none;
+  }
+
+  .orb-one {
+    width: 145px;
+    height: 145px;
+    right: -18px;
+  }
+
+  .orb-two {
+    width: 90px;
+    height: 90px;
+    left: -14px;
+  }
+
+  .hero-topics,
+  .hero-actions,
+  .connect-actions,
+  .footer-socials {
+    max-width: 100%;
+  }
+
+  .youtube-feed-copy h3,
+  .work-card h3,
+  .work-cta h3,
+  .connect h2,
+  .hero h1,
+  .section-heading h2 {
+    overflow-wrap: anywhere;
+  }
+}

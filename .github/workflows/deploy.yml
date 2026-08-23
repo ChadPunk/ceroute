@@ -94,6 +94,23 @@ jobs:
           cp -R assets _site/
           cp -R .well-known _site/
 
+      - name: Version the asset URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Pages serves HTML and CSS with the same max-age=600, cached
+          # independently, so a reload during that window can pair new markup
+          # with a stale stylesheet. Stamping the commit SHA onto the asset
+          # URLs means new HTML can never request an old stylesheet.
+          v="${GITHUB_SHA:0:7}"
+          sed -i \
+            -e "s|href=\"styles\.css\"|href=\"styles.css?v=${v}\"|" \
+            -e "s|src=\"script\.js\"|src=\"script.js?v=${v}\"|" \
+            _site/index.html
+          grep -q "styles.css?v=${v}" _site/index.html
+          grep -q "script.js?v=${v}" _site/index.html
+          echo "stamped assets with v=${v}"
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

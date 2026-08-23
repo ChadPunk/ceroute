@@ -1,44 +1,53 @@
-# Chad Emery Creator Website
+# ceroute.com static site
 
-A responsive single-page site built around the CE brand.
+This repo is now a plain static GitHub Pages site. Hugo is no longer required.
 
-## Files
+## Site files
 - `index.html`
 - `styles.css`
 - `script.js`
-- `assets/ce-logo.png`
+- `assets/`
 
-## Run locally
-Open `index.html` in a browser.
+## GitHub Pages
+Deployment is handled by `.github/workflows/deploy.yml`.
 
-For a simple local web server:
-```bash
-python -m http.server 8000
-```
-Then visit http://localhost:8000
+In GitHub:
+1. Open **Settings → Pages**
+2. Under **Build and deployment → Source**, select **GitHub Actions**
+3. Push to `main`
+4. Wait for the `Deploy static site to Pages` workflow to finish
 
-## Before publishing
-Replace the placeholder YouTube `href="#"` with your real channel URL and replace `YOUR_EMAIL_HERE` in `index.html` with the email address you want people to use for advice, collaborations, work, and partnerships.
+## Custom domain
+`CNAME` contains:
 
-## Brand palette
-- Deep Navy: #0A1B33
-- Electric Blue: #2563EB
-- Charcoal: #1F2328
-- White: #FFFFFF
+`ceroute.com`
 
+Keep the existing DNS records for the GitHub Pages custom domain unless you are intentionally changing providers.
 
-## Social links configured
-- YouTube: https://youtube.com/chademery
-- Instagram: https://www.instagram.com/emerychad/
-- LinkedIn: https://www.linkedin.com/in/chad-emery-2814a8126/
+## Cloudflare verification
+The repo contains:
 
-## Live YouTube section
-The site loads the latest three YouTube uploads in the browser using the channel's
-YouTube RSS feed and rss2json as an XML-to-JSON bridge. If the feed cannot be loaded,
-the section automatically falls back to a direct link to the YouTube channel.
+`.well-known/cf-2fa-verify.txt`
 
-No video titles are hard-coded into the site.
+with:
 
-## v4 visual tweaks
-- Added inline social icons for YouTube, Instagram, and LinkedIn in the header, connect section, and footer.
-- Replaced the generic hero terminal with a Cisco-style IOS CLI snippet using realistic networking commands.
+`44ea7708d6cfca2`
+
+The deployed URL should be:
+
+`https://ceroute.com/.well-known/cf-2fa-verify.txt`
+
+## Replacing the old Hugo site
+Remove the old Hugo-specific files and folders from the repository, including:
+- `archetypes/`
+- `content/`
+- `public/`
+- `resources/`
+- `static/`
+- `themes/`
+- `.gitmodules`
+- `.hugo_build.lock`
+- `hugo.yaml`
+- the old Hugo workflow
+
+Then copy the contents of this package into the repository root and push to `main`.

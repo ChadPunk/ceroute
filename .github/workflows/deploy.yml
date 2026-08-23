@@ -88,6 +88,9 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html styles.css script.js youtube-feed.json CNAME .nojekyll _site/
+          # Crawler files. This list is an allowlist, so anything added to the
+          # repo root must be named here or it never reaches the live site.
+          cp robots.txt sitemap.xml _site/
           cp -R assets _site/
           cp -R .well-known _site/
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 482 217" role="img" aria-label="CE">
+  <!--
+    Two colour groups, driven by CSS custom properties.
+    Used as an img, the fallbacks apply: white letterforms, brand blue slashes.
+    Inlined in a page, set the ce-letter and ce-slash custom properties on any
+    ancestor to recolour it. Document selectors cannot reach inside a use
+    shadow tree, but inherited properties and custom properties can, which is
+    why the fills sit in inline style attributes.
+  -->
+  <g transform="translate(-69,-204)">
+    <g style="fill:var(--ce-letter,#ffffff)">
+      <path d="M335.5 206.0 L196.0 206.0 L187.0 207.0 L167.0 211.0 L145.0 219.0 L125.5 229.5 L107.5 243.0 L91.5 260.0 L80.5 276.5 L72.5 295.5 L69.0 313.0 L69.0 330.0 L73.0 349.0 L82.0 368.5 L88.5 378.0 L95.0 385.5 L111.0 399.5 L131.5 411.0 L143.5 415.5 L152.0 417.5 L192.5 374.0 L184.5 375.0 L166.0 375.0 L156.0 373.0 L148.0 370.0 L139.0 365.0 L134.5 361.5 L125.5 352.0 L122.0 346.5 L117.5 336.0 L115.5 326.0 L115.5 315.5 L119.5 300.0 L124.0 291.0 L130.0 282.5 L138.5 273.5 L154.0 262.5 L165.5 257.0 L181.0 252.5 L199.0 250.5 L297.5 250.5 Z"/>
+      <path d="M381.0 252.5 L508.0 252.5 L547.5 206.0 L421.5 206.0 Z"/>
+      <path d="M311.0 336.0 L444.5 336.0 L456.0 324.0 L485.5 290.0 L351.5 290.0 Z"/>
+      <path d="M303.0 419.5 L507.5 419.5 L551.0 373.5 L346.0 373.5 Z"/>
+    </g>
+    <g style="fill:var(--ce-slash,#2f73ff)">
+      <path d="M404.5 205.0 L357.0 204.5 L262.5 313.5 L165.0 421.0 L212.5 421.0 L318.0 305.5 Z"/>
+      <path d="M354.5 336.5 L310.5 336.5 L234.0 421.0 L280.0 421.0 Z"/>
+    </g>
+  </g>
+</svg>

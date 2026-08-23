@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-label="CE">
+  <!--
+    Favicon reduction. Below roughly 32px the C and E letterforms collapse into
+    noise, so this keeps only the two diagonals — the most recognisable part of
+    the mark — on the brand blue.
+  -->
+  <rect width="260" height="260" rx="58" fill="#2f73ff"/>
+  <g transform="translate(-75,-95.2) scale(0.72)" fill="#ffffff">
+    <path d="M404.5 205.0 L357.0 204.5 L262.5 313.5 L165.0 421.0 L212.5 421.0 L318.0 305.5 Z"/>
+    <path d="M354.5 336.5 L310.5 336.5 L234.0 421.0 L280.0 421.0 Z"/>
+  </g>
+</svg>
